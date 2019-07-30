@@ -6,21 +6,33 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
     [SerializeField] float chaseRange = 5f;
     [SerializeField] float turnSpeed = 5f;
     NavMeshAgent navMeshAgent;
-
-    bool isProvoked;
+    Animator animator;
+    EnemyHealth enemyHealth;
+    Transform target;
+    public bool isProvoked;
     private float distanceToTarget = Mathf.Infinity;
+
+
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
+        target = FindObjectOfType<PlayerHealth>().transform;
     }
 
     void Update()
     {
+
+        if(enemyHealth.IsDead)
+        {
+            enabled = false;
+            navMeshAgent.enabled = false;
+        }
 
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
@@ -37,6 +49,7 @@ public class EnemyAI : MonoBehaviour
         {
             isProvoked = false;
         }
+        
         
     }
 
@@ -61,14 +74,18 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        GetComponent<Animator>().SetBool("Attack", true);
+        animator.SetBool("Attack", true);
     }
 
     private void ChaseTarget()
     {
-        GetComponent<Animator>().SetBool("Attack", false);
-        GetComponent<Animator>().SetTrigger("Move");
-        navMeshAgent.SetDestination(target.position);
+        animator.SetBool("Attack", false);
+        animator.SetTrigger("Move");
+        if(navMeshAgent.enabled == true)
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
+        
         
     }
     private void FaceTarget()

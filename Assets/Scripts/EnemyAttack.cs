@@ -16,6 +16,5 @@ public class EnemyAttack : MonoBehaviour
     {
         if(target == null) return;
         target.LoseHealth(damage);
-        Debug.Log("bang bang");
     }
 }

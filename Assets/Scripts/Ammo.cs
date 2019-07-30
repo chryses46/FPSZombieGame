@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Ammo : MonoBehaviour
 {
@@ -12,6 +11,15 @@ public class Ammo : MonoBehaviour
     {
         public AmmoType ammoType;
         public int ammoAmmount;
+        public Text ammoHUD;
+    }
+
+    void Awake()
+    {
+        foreach(AmmoSlot slot in ammoSlots)
+        {
+            slot.ammoHUD.text = slot.ammoAmmount.ToString();
+        }
     }
 
     public int GetCurrentAmmo(AmmoType ammoType)
@@ -21,8 +29,8 @@ public class Ammo : MonoBehaviour
 
     public void ReduceCurrentAmmo(AmmoType ammoType)
     {
-        GetAmmoSlot(ammoType).ammoAmmount --;
-        Debug.Log("Current Ammo Count: " + GetAmmoSlot(ammoType).ammoAmmount);
+        GetAmmoSlot(ammoType).ammoAmmount--;
+        SetAmmoHUDText(ammoType);
     }
 
     private AmmoSlot GetAmmoSlot(AmmoType ammoType)
@@ -38,4 +46,14 @@ public class Ammo : MonoBehaviour
         return null;
     }
 
+    public void IncreaseCurrentAmmo(AmmoType ammoType, int ammoAmount)
+    {
+        GetAmmoSlot(ammoType).ammoAmmount += ammoAmount;
+        SetAmmoHUDText(ammoType);
+    }
+
+    private void SetAmmoHUDText(AmmoType ammoType)
+    {
+        GetAmmoSlot(ammoType).ammoHUD.text = (GetAmmoSlot(ammoType).ammoAmmount).ToString();
+    }
 }
