@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5502647563931040751}
   - component: {fileID: 6988253814761514997}
   - component: {fileID: 1323180390}
+  - component: {fileID: 251030093565608554}
   m_Layer: 0
   m_Name: RBPlayer
   m_TagString: Player
@@ -192,10 +193,27 @@ MonoBehaviour:
   ammoSlots:
   - ammoType: 0
     ammoAmmount: 15
+    ammoHUD: {fileID: 0}
   - ammoType: 1
     ammoAmmount: 6
+    ammoHUD: {fileID: 0}
   - ammoType: 2
     ammoAmmount: 120
+    ammoHUD: {fileID: 0}
+--- !u!114 &251030093565608554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677697722637999284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1ccab051615a84e89ad389245dbdfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactCanvas: {fileID: 0}
+  impactTime: 0.3
 --- !u!1 &677697722637999286
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +701,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025002843566611434, guid: 9a141d762cfb8cb45bd19885f661a9bf,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 4.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093070956525532546, guid: 9a141d762cfb8cb45bd19885f661a9bf,
+        type: 3}
+      propertyPath: lightDecay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093070956525532546, guid: 9a141d762cfb8cb45bd19885f661a9bf,
+        type: 3}
+      propertyPath: angleDecay
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a141d762cfb8cb45bd19885f661a9bf, type: 3}
